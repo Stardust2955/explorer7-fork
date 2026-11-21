@@ -3,6 +3,10 @@
 #pragma function(memcpy)
 #pragma function(memset)
 #pragma function(memcmp)
+#pragma function(strcmp)
+#pragma function(wcscmp)
+#pragma function(strlen)
+#pragma function(wcslen)
 
 void* calloc(size_t count, size_t size)
 {
@@ -118,4 +122,38 @@ memcmp(const void* str1, const void* str2, size_t count)
 			return s1[-1] < s2[-1] ? -1 : 1;
 	}
 	return 0;
+}
+
+int
+strcmp(const char* str1, const char* str2)
+{
+	while (*str1 && *str1 == *str2) {
+		++str1;
+		++str2;
+	}
+	return (unsigned char)*str1 - (unsigned char)*str2;
+}
+
+int
+wcscmp(const wchar_t* str1, const wchar_t* str2)
+{
+	while (*str1 && *str1 == *str2) {
+		++str1;
+		++str2;
+	}
+	return *str1 - *str2;
+}
+
+size_t strlen(const char* str)
+{
+	const char* s;
+	for (s = str; *s; ++s);
+	return (s - str);
+}
+
+size_t wcslen(const wchar_t* str)
+{
+	const wchar_t* s;
+	for (s = str; *s; ++s);
+	return (s - str);
 }
