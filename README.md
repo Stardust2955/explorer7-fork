@@ -11,7 +11,7 @@ This fork was made to refine existing Explorer7 versions, **and will not behave 
 
 ## Compatibility
 
-The explorer7 version this fork builds on only ran on Windows 10. This fork adds Windows 11, including 24H2.
+The explorer7 version this fork builds on only ran on Windows 10. This fork adds Windows 11, including 24H2 through 26H2.
 
 | Windows version | Status |
 | --------------- | ------ |
@@ -19,7 +19,8 @@ The explorer7 version this fork builds on only ran on Windows 10. This fork adds
 | Windows 11 21H2, 22H2 and 23H2 | ⚠️ Should work like the original explorer7, but not tested in this fork yet. |
 | Windows 11 24H2 (build 26100) | ✅ Supported. See the known issues below. |
 | Windows 11 25H2 (build 26200) | ⚠️ Should work, as it uses the same system files as 24H2, but not tested yet. |
-| Windows 8.1 and older, or anything newer than 25H2 | ❌ Not supported. explorer7 shows "This build of Windows is not supported." and closes. |
+| Windows 11 26H2 (build 26300) | ⚠️ Should work, as it is delivered as an enablement package on the same servicing branch as 24H2 and 25H2, but not tested yet. |
+| Windows 8.1 and older, or anything newer than 26H2 | ❌ Not supported. explorer7 shows "This build of Windows is not supported." and closes. |
 
 **Windows 11 24H2**
 
@@ -157,7 +158,7 @@ Most options are only read when Explorer starts, so restart Explorer after chang
 | AlphaValue | REG_DWORD | For use alongside OverrideAlpha, to specify a 2-digit hex code for the colorization system to use. | **0x6B** |
 | UseTaskbarPinning | REG_DWORD | Determines whether taskbar pinning functionality is available to the user. When set to 0, pins will not be loaded and cannot be modified from jumplists. | **1** |
 | ShellUIAccentOverride | REG_DWORD | Gives the taskbar, start menu and taskbar thumbnails real DWM blur behind instead of a Windows 10 accent fill, which is what Windows 7 actually did. This takes those three windows away from `ColorizationOptions`, so the two are not meant to be combined; set this to 0 to hand them back. Has no effect under Classic, high contrast, or with composition off. | **1** |
-| Win7DesktopIconRows | REG_DWORD | Spaces the desktop icon rows the way Windows 7 did. Windows 7 shared all of the space left at the bottom of the desktop between the rows, Windows 10 and 11 only share what is left beyond 30 percent of a row, so their rows sit a few pixels tighter. One row height covers every display, so with several displays this picks which one it is fitted to: **1** fits the main display, like single monitor Windows 7, and another display may fit one row fewer than it would otherwise; **2** fits the display at the top left of the whole desktop, which is the rule Windows 7 itself used; **0** keeps the stock rows. Applies with **Align icons to grid** on. Matched by byte pattern on Windows 10 19041 and Windows 11 26100 only, other builds keep the stock rows. Read at startup, restart Explorer after changing it. | **1** |
+| Win7DesktopIconRows | REG_DWORD | Spaces the desktop icon rows the way Windows 7 did. Windows 7 shared all of the space left at the bottom of the desktop between the rows, Windows 10 and 11 only share what is left beyond 30 percent of a row, so their rows sit a few pixels tighter. One row height covers every display, so with several displays this picks which one it is fitted to: **1** fits the main display, like single monitor Windows 7, and another display may fit one row fewer than it would otherwise; **2** fits the display at the top left of the whole desktop, which is the rule Windows 7 itself used; **0** keeps the stock rows. Applies with **Align icons to grid** on. Matched by byte pattern on Windows 10 19041 and Windows 11 26100 or later, other builds keep the stock rows. Read at startup, restart Explorer after changing it. | **1** |
 | EnableWinXMenu | REG_DWORD | When set to 1, right-clicking the Start button opens a power user menu like the one in Windows 10, and Win+X opens it too. It has shortcuts to tools such as Device Manager, Disk Management, Task Manager and Run, plus a "Shut down or log off" submenu. Sleep and Hibernate appear in that submenu only when the Start menu's power button would show them. The console items follow Windows' own `DontUsePowerShellOnWinX` value: set it to 1 for Command Prompt or 0 for Windows PowerShell. When it is not set, Windows PowerShell is shown, like Windows 10 does. When EnableWinXMenu is 0, the Start button keeps its Windows 7 menu and Win+X does nothing. | **0** |
 | UseDCompFlyouts | REG_DWORD | When set to 0, the volume and network flyouts on the taskbar use the Windows 7 style instead of the modern style. When EnableImmersive is 0, the Windows 7 style is always used. | **0 (when EnableImmersive = 0)**, **1 (when EnableImmersive = 1)** |
 | CompactUserTile | REG_DWORD | When set to 1, the panel that opens when you click your user picture on the taskbar is smaller, with a smaller picture and no heading above your name. Only the build 7850 explorer has a user picture on the taskbar. The change shows the next time you open the panel. | **0** |
