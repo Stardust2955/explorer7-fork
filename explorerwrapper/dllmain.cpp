@@ -1,4 +1,4 @@
-﻿#define INITGUID
+#define INITGUID
 
 #pragma warning(disable:4302)
 #pragma warning(disable:4309)
@@ -1238,7 +1238,7 @@ extern "C" HRESULT WINAPI IUnknown_QueryServiceExecNEW(
 					PIDLIST_ABSOLUTE pidl;
 					if (SUCCEEDED(SHGetIDListFromObject(ish, &pidl)))
 					{
-						info->pidlShortcut = pidl;
+						info->pidlShortcut = (ITEMIDLIST_ABSOLUTE*)pidl;
 					}
 					ish->Release();
 				}
