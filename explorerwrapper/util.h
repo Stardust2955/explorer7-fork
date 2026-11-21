@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #pragma warning(disable:4302)
 #pragma warning(disable:4311)
 #pragma warning(disable:4312)
@@ -1193,11 +1193,11 @@ void CreateShellFolder()
 
 
 // Warn and exit on unsupported OS builds
-// 26100 is checked against its binaries in notes/24h2-support.md, 26200 shares them
+// 26100 is checked against its binaries in notes/24h2-support.md, 26300 is Windows 11 26H2 on the same servicing branch
 void UnsupportedBuildWarningAndExit()
 {
 	ULONG build = g_osVersion.BuildNumber();
-	if (build < 9999 || build > 26200)
+	if (build < 9999 || build > 26300)
 	{
 		MessageBoxW(NULL, L"This build of Windows is not supported.", L"explorer7", MB_ICONEXCLAMATION);
 		ExitProcess(0);
