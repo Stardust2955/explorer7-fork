@@ -244,6 +244,10 @@ static bool IsNativeSearchThemeClassToken(LPCWSTR token, int tokenLen)
 {
 	static const LPCWSTR nativeClasses[] =
 	{
+		L"SearchBox",
+		L"SearchBoxComposited::SearchBox",
+		L"InactiveSearchBoxComposited::SearchBox",
+		L"SearchEditBox",
 		L"TaskBarComposited::Edit",
 		L"SearchBoxEdit::Edit",
 		L"SearchBoxEditComposited::Edit",
@@ -511,6 +515,11 @@ HTHEME __stdcall OpenThemeDataForDpi_Hook(HWND hwnd, LPCWSTR pszClassList, UINT 
 		return fOpenThemeDataForDpi(hwnd, pszClassList, dpi);
 
 	bool useInactiveTheme = ShouldOpenInactiveTheme(hwnd, pszClassList);
+
+	// The DirectUI SearchFolder interface enforces ItemsViewAccessible::Header, which the inactive theme cannot style
+	// Falling back to the system theme for it keeps the start menu search interface working
+	useInactiveTheme = useInactiveTheme && (!pszClassList || lstrcmp(pszClassList, L"ItemsViewAccessible::Header") != 0);
+
 	HTHEME theme = 0;
 	DWORD flags = 2;
 	if (dpi != 96)
