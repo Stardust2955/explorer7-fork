@@ -19,7 +19,7 @@ pattern below is anchored on a named function, not on a guess.
 
 | area | before | 26100 finding | fix |
 | --- | --- | --- | --- |
-| build gate | `build > 20000` exits | 26100 | ceiling raised to 26200, 25H2 shares the binaries |
+| build gate | `build > 20000` exits | 26100 | ceiling raised to 26200, later to 26300 for 26H2; later builds use the 26100 patterns |
 | `XamlLauncher::ShowStartView` | late NI pattern with a hardcoded cookie displacement | prologue grew a disp32 frame lea | new wildcarded pattern, `23F2A0`, matches once |
 | `XamlLauncherState::ShowSearchFromOpenStart` | loose 22H2 shape | three hits, first one right by luck | tight pattern `2434A8`, matches once |
 | `CortanaDesktopExperienceView::ShowInternal` | loose VB shape | first hit is `SearchAppDesktopExperienceView::ShowInternal` | tight pattern, both bodies patched |
